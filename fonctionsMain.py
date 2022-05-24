@@ -15,7 +15,7 @@ import fonctionsEngine as f
 #Charger les Commandes
 def load(msg) :
   try:
-    file = open("serveur" + "/" + msg.guild.name + "/" + msg.guild.name + ".txt", "r")
+    file = open("serveur" + "/" + msg.guild.name + "/" + msg.guild.name + ".txt", "r", encoding="latin-1")
     file.close()
     listeCommandes = msg.guild.name + "Commandes"
     listeCommandes = f.LoadCommands(msg.guild.name)
@@ -110,9 +110,9 @@ def delete(msg) :
     serv = str(msg.guild.name)
     message = msg.content.split("rpz del ")
     commande = message[1]
-    with open("serveur" + "/" + serv + "/" + serv + ".txt", "r") as fichier :
+    with open("serveur" + "/" + serv + "/" + serv + ".txt", "r", encoding="latin-1") as fichier :
       lines = fichier.readlines()
-    with open("serveur" + "/" + serv + "/" + serv + ".txt", "w") as fichier :
+    with open("serveur" + "/" + serv + "/" + serv + ".txt", "w", encoding="latin-1") as fichier :
       for element in lines :
         if element.split(";")[0] != commande :
           fichier.write(element)
