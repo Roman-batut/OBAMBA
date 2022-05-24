@@ -6,7 +6,7 @@ import random
 
 import fonctionsEngine as f
 import fonctionsMain as t
-import music as m
+#import music as m
 import jeux as z
 
 
@@ -74,7 +74,18 @@ async def on_message(msg) :
 			head, body = t.delete(msg)
 			await f.embed(msg, True, head, body)
 
-    #Divers
+	
+		"""
+	#Musique
+
+
+	#Play
+		if msg.content.startswith("rpz play") :
+			path = await m.play(msg)
+			await f.jouerAudio(msg, path + ".mp3")
+	"""
+	
+	#Divers
 
     #Ping
 		if msg.content.startswith("rpz ping") :
@@ -96,7 +107,7 @@ async def on_message(msg) :
 			head, body = t.wikihow(msg)
 			await f.embed(msg, True, head, body)
 
-		#Translate
+	#Translate
 		if msg.content.startswith("rpz translate") :
 			head, body = t.translate(msg)
 			await f.embed(msg, True, head, body)

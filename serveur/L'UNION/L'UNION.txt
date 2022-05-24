@@ -111,3 +111,5 @@ hamburger; ; True
 freeze; ; True
 flip; ; True
 fem; ; True
+pute; ; True
+avocat; ; True

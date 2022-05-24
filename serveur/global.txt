@@ -218,3 +218,6 @@ fem; ; True
 fem; ; True
 fem; ; True
 fem; ; True
+chiens; ; True
+chiens; ; True
+pute; ; True

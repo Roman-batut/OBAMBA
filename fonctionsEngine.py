@@ -27,9 +27,7 @@ class CommandeSimple:
             try:
                 file = open(path)
                 file.close()
-                if self.listeTextes == [' '] : message = True
-                else : message = False
-                await jouerAudio(msg, audio, path, message)
+                await jouerAudio(msg, path) 
             except FileNotFoundError :
                 await msg.delete()
 
@@ -68,8 +66,23 @@ def SaveTxt(name, serv, texte = "", mp3 = False):
         fichier.write(name + ";" + texte + " ; " + mp3 + "\n")
 
 #Enregistrer Commande mp3
-def creeraudio(nom, url, serv, path) :
-    if "youtu" in str(url) : 
+def creeraudio(nom, url, serv, path, music) :
+    if music == True : 
+        ydl_opts = {
+            'outtmpl': 
+            path,
+            'format':
+            'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '320',
+            }],
+        }
+        with youtube_dl.YoutubeDL(ydl_opts) as Mp3 :
+            Mp3.download([url]) 
+    
+    elif "youtu" in str(url) : 
         ydl_opts = {
             'outtmpl':
             path + str(nom) + ".mp3",
@@ -113,14 +126,14 @@ async def embed(msg, inline, titre0 = "Error : ", desc = None, titre1 = None, me
     await msg.channel.send(embed = embedVar)
 
 #Jouer Un Audio
-async def jouerAudio(msg, audio, path, message) :
+async def jouerAudio(msg, path) :
     voice_channel = msg.author.voice
     if voice_channel != None:
         vc = await voice_channel.channel.connect()
         vc.play(discord.FFmpegPCMAudio(path))
         while vc.is_playing():
-            time.sleep(.5)
+            time.sleep(2)
         await vc.disconnect()
-    elif message == True :
+    else : 
         await embed(msg, True, "Error :",str(msg.author.name) + " is not in a channel.")
     await msg.delete()

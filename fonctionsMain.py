@@ -97,7 +97,7 @@ def create(msg) :
       #Enregistrer les informations audios
       try:
         path = "serveur" + "/" + str(serv) + "/" 
-        f.creeraudio(mots[0], url, serv, path)
+        f.creeraudio(mots[0], url, serv, path, False)
         return("Information :", "Commande ajoutée", None, None, None, None)
       except requests.exceptions.MissingSchema :
         return("Error :", "Il y a eu une erreur de toute les couleurs c'est chaud wallah", None, None, None, None)
@@ -127,13 +127,13 @@ def delete(msg) :
 #Ping les Utilisateurs
 def ping(msg) :
   if "help" in msg.content : 
-    return("Modèle pour rpz ping","-rpz ping [ping de la personne] [nombre de ping < 21]", 1)
+    return("Modèle pour rpz ping","-rpz ping [ping de la personne] [nombre de ping < 11]", 1)
   
   else :
     message = msg.content.split(" ")
     nomduping = message[2]
     nombredeping = int(message[3])
-    if nombredeping < 21 :
+    if nombredeping < 11 :
       return("Information :", nomduping + " est demandé urgament", nombredeping)
     else :
       return("Error :", "Nombre de pings trops élevé", 1)

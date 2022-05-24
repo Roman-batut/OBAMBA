@@ -53,7 +53,7 @@ async def quizz(client, msg, iter=1):
 
 #OSS 117
 async def oss(msg) :
-	with open("oss117.txt", "r", encoding="latin-1") as fichier :
+	with open("serveur/oss117.txt", "r", encoding="latin-1") as fichier :
 		text = fichier.readlines()
 		step = random.randrange(5)
 		start = random.randrange(len(text)-step)
